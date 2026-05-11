@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SKA Competition Jilid 2 – SKA FM Polbeng</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,400;0,600;0,700;1,400&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #0a1a4e;
+      --blue: #1a3fcc;
+      --bright-blue: #2255ff;
+      --yellow: #f5c518;
+      --gold: #e6a800;
+      --white: #ffffff;
+      --light: #eef2ff;
+      --gray: #6b7280;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    header {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px 80px;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 60% 20%, #1a3fcc55 0%, transparent 60%),
+                  radial-gradient(ellipse at 10% 80%, #f5c51822 0%, transparent 50%),
+                  linear-gradient(160deg, #050d2e 0%, #0d1f5c 50%, #050d2e 100%);
+    }
+
+    /* animated stars */
+    header::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 40% 10%, rgba(255,255,255,.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 35%, rgba(255,255,255,.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 85% 15%, rgba(255,255,255,.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 25% 75%, rgba(255,255,255,.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 80%, rgba(255,255,255,.3) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 90% 65%, rgba(255,255,255,.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 5% 50%, rgba(255,255,255,.4) 0%, transparent 100%);
+      pointer-events: none;
+      animation: twinkle 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes twinkle { from { opacity: .6; } to { opacity: 1; } }
+
+    /* glowing circle behind logos */
+    .glow-ring {
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #2255ff18 0%, transparent 70%);
+      border: 1px solid #2255ff22;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -60%);
+      animation: pulse-ring 3s ease-in-out infinite;
+    }
+    @keyframes pulse-ring {
+      0%,100% { transform: translate(-50%,-60%) scale(1); opacity: .6; }
+      50%      { transform: translate(-50%,-60%) scale(1.06); opacity: 1; }
+    }
+
+    /* logos row */
+    .logos {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-bottom: 32px;
+      animation: fadeDown .8s ease both;
+    }
+    .logos img {
+      width: 90px; height: 90px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 18px #2255ff88);
+      border-radius: 50%;
+    }
+    .logos .divider {
+      width: 2px; height: 70px;
+      background: linear-gradient(to bottom, transparent, var(--yellow), transparent);
+    }
+
+    /* SKA FM badge */
+    .ska-badge {
+      background: linear-gradient(135deg, var(--blue), var(--navy));
+      border: 2px solid var(--yellow);
+      border-radius: 12px;
+      padding: 8px 18px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .ska-badge .freq {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      color: var(--yellow);
+      line-height: 1;
+    }
+    .ska-badge .name {
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 2px;
+      line-height: 1.3;
+    }
+    .ska-badge .signal {
+      color: var(--yellow);
+      font-size: 1.2rem;
+      animation: blink 1.2s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* headline */
+    .hero-tag {
+      font-size: .8rem;
+      letter-spacing: 4px;
+      color: var(--yellow);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      animation: fadeDown .9s .1s ease both;
+    }
+    h1.hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      line-height: 1;
+      text-align: center;
+      letter-spacing: 2px;
+      animation: fadeDown .9s .2s ease both;
+    }
+    h1.hero-title span { color: var(--yellow); }
+
+    .hero-sub {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      color: #a0b4ff;
+      margin-top: 8px;
+      text-align: center;
+      animation: fadeDown .9s .3s ease both;
+    }
+
+    .hero-tagline {
+      margin-top: 18px;
+      font-size: .95rem;
+      color: #c0ccff;
+      text-align: center;
+      max-width: 520px;
+      line-height: 1.7;
+      animation: fadeDown .9s .4s ease both;
+    }
+
+    /* date pill */
+    .date-pill {
+      margin-top: 28px;
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(245,197,24,.12);
+      border: 1.5px solid var(--yellow);
+      border-radius: 999px;
+      padding: 10px 24px;
+      font-size: .9rem;
+      font-weight: 600;
+      color: var(--yellow);
+      animation: fadeDown .9s .5s ease both;
+    }
+    .date-pill span { color: var(--white); font-weight: 400; }
+
+    /* scroll cue */
+    .scroll-cue {
+      position: absolute;
+      bottom: 28px;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      font-size: .7rem; letter-spacing: 2px; color: #6679cc;
+      animation: bob 2s ease-in-out infinite;
+    }
+    @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
+    .scroll-cue svg { width: 22px; opacity: .6; }
+
+    @keyframes fadeDown {
+      from { opacity:0; transform:translateY(-22px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ── SECTION WRAPPER ── */
+    section { padding: 80px 20px; }
+    .container { max-width: 900px; margin: 0 auto; }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: 2px;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .section-title span { color: var(--yellow); }
+    .section-sub {
+      text-align: center;
+      color: #8899cc;
+      font-size: .9rem;
+      margin-bottom: 48px;
+    }
+
+    /* ── PROFIL ── */
+    #profil {
+      background: linear-gradient(180deg, #050d2e 0%, #0a1a4e 100%);
+    }
+    .profil-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 20px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .profil-card::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      background: radial-gradient(circle, #f5c51820 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .profil-card p {
+      color: #c0ccee;
+      font-size: 1rem;
+      line-height: 1.9;
+      margin-bottom: 16px;
+    }
+    .profil-card p:last-child { margin-bottom: 0; }
+    .profil-card strong { color: var(--yellow); }
+
+    .cabang-row {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      margin-top: 28px;
+    }
+    .cabang-chip {
+      display: flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, #1a3fcc33, #2255ff22);
+      border: 1.5px solid #2255ff66;
+      border-radius: 12px;
+      padding: 14px 22px;
+      font-weight: 600;
+      font-size: .95rem;
+      flex: 1; min-width: 220px;
+    }
+    .cabang-chip .icon { font-size: 1.5rem; }
+
+    /* ── CARDS GRID ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+    }
+
+    /* ── GUIDEBOOK SECTION ── */
+    #guidebook { background: #060e30; }
+
+    .guide-card {
+      background: linear-gradient(135deg, #1a3fcc22, #0a1a4e);
+      border: 2px solid var(--yellow);
+      border-radius: 20px;
+      padding: 44px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .guide-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px #f5c51822;
+    }
+    .guide-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--yellow), transparent);
+    }
+    .guide-icon { font-size: 3.5rem; margin-bottom: 16px; }
+    .guide-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+    .guide-card p { color: #99aadd; font-size: .9rem; line-height: 1.7; margin-bottom: 24px; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: .9rem;
+      text-decoration: none;
+      transition: all .25s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-yellow {
+      background: var(--yellow);
+      color: var(--navy);
+    }
+    .btn-yellow:hover { background: var(--gold); transform: scale(1.04); }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--bright-blue);
+      color: var(--white);
+    }
+    .btn-outline:hover { background: var(--bright-blue); }
+
+    /* ── REGISTRATION SECTION ── */
+    #pendaftaran { background: linear-gradient(180deg,#0a1a4e,#050d2e); }
+
+    .lomba-block { margin-bottom: 48px; }
+    .lomba-block:last-child { margin-bottom: 0; }
+
+    .lomba-header {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 22px;
+    }
+    .lomba-header .emoji { font-size: 2rem; }
+    .lomba-header h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+    }
+    .lomba-divider {
+      flex: 1; height: 1px;
+      background: linear-gradient(to right, #2255ff44, transparent);
+    }
+
+    .gelombang-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+    .gelombang-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px;
+      padding: 26px;
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+    }
+    .gelombang-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--bright-blue);
+      box-shadow: 0 12px 40px #2255ff22;
+    }
+    .gelombang-card .wave-label {
+      font-size: .7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 8px;
+    }
+    .gelombang-card h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .gelombang-card .period {
+      font-size: .82rem;
+      color: #8899cc;
+      margin-bottom: 16px;
+    }
+    .gelombang-card .price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--yellow);
+      margin-bottom: 20px;
+    }
+    .gelombang-card .price small { font-size: .8rem; font-weight: 400; color: #8899cc; }
+
+    .badge-wave {
+      position: absolute; top: 16px; right: 16px;
+      font-size: .65rem; font-weight: 700; letter-spacing: 1px;
+      padding: 4px 10px; border-radius: 999px;
+    }
+    .badge-early { background: #22c55e22; color: #22c55e; border: 1px solid #22c55e44; }
+    .badge-late  { background: #f97316aa; color: #fff; border: 1px solid #f9731644; }
+
+    /* ── INFO ── */
+    #info { background: #060e30; }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 22px;
+    }
+    .info-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      padding: 28px 22px;
+      text-align: center;
+      transition: border-color .3s;
+    }
+    .info-card:hover { border-color: var(--yellow); }
+    .info-card .ic { font-size: 2.4rem; margin-bottom: 12px; }
+    .info-card h4 { font-size: .75rem; letter-spacing: 3px; color: var(--yellow); text-transform: uppercase; margin-bottom: 6px; }
+    .info-card p { font-size: .95rem; color: #c0ccee; line-height: 1.5; }
+
+    /* benefit chips */
+    .benefit-row {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      margin-top: 40px; justify-content: center;
+    }
+    .benefit-chip {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(245,197,24,.08);
+      border: 1px solid rgba(245,197,24,.3);
+      border-radius: 999px;
+      padding: 9px 18px;
+      font-size: .85rem;
+      color: var(--white);
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: linear-gradient(180deg, #0a1a4e, #050d2e); }
+
+    .contact-row {
+      display: flex; flex-wrap: wrap; gap: 18px; justify-content: center;
+      margin-bottom: 40px;
+    }
+    .contact-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px;
+      padding: 24px 28px;
+      min-width: 220px;
+      text-align: center;
+    }
+    .contact-card .name { font-size: .75rem; letter-spacing: 3px; color: var(--yellow); text-transform: uppercase; margin-bottom: 6px; }
+    .contact-card .number { font-size: 1rem; font-weight: 600; }
+    .contact-card .role { font-size: .8rem; color: #8899cc; margin-top: 2px; }
+
+    .payment-row {
+      display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;
+    }
+    .payment-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px;
+      padding: 22px 28px;
+      min-width: 240px;
+      text-align: center;
+    }
+    .payment-card .bank { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 2px; color: var(--yellow); margin-bottom: 6px; }
+    .payment-card .acc { font-size: .9rem; font-weight: 600; letter-spacing: 1px; }
+    .payment-card .holder { font-size: .8rem; color: #8899cc; margin-top: 4px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #020814;
+      text-align: center;
+      padding: 32px 20px;
+      color: #445;
+      font-size: .8rem;
+      border-top: 1px solid #1a2044;
+    }
+    footer a { color: #5566aa; text-decoration: none; }
+    footer a:hover { color: var(--yellow); }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 14px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(5,13,46,.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 2px;
+      color: var(--yellow);
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: #8899cc;
+      font-size: .82rem; letter-spacing: 1.5px; text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--yellow); }
+
+    @media(max-width: 640px) {
+      .nav-links { gap: 14px; }
+      .nav-links a { font-size: .7rem; }
+      .profil-card { padding: 28px 20px; }
+      header { padding-top: 100px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">SKA FM × POLBENG</div>
+  <ul class="nav-links">
+    <li><a href="#profil">Profil</a></li>
+    <li><a href="#guidebook">Guidebook</a></li>
+    <li><a href="#pendaftaran">Daftar</a></li>
+    <li><a href="#contact">Kontak</a></li>
+  </ul>
+</nav>
+
+<!-- HEADER HERO -->
+<header>
+  <div class="glow-ring"></div>
+
+  <!-- Logos -->
+  <div class="logos">
+    <!-- Polbeng logo -->
+    <img src="https://upload.wikimedia.org/wikipedia/id/4/4a/Logo_Politeknik_Negeri_Bengkalis.png"
+         alt="Logo Politeknik Negeri Bengkalis"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"/>
+    <!-- fallback polbeng -->
+    <div style="display:none; width:90px; height:90px; background:linear-gradient(135deg,#1a3fcc,#0a1a4e); border-radius:50%; border:3px solid var(--yellow); align-items:center; justify-content:center; font-family:'Bebas Neue',sans-serif; font-size:.75rem; letter-spacing:1px; text-align:center; padding:8px; color:var(--yellow); filter:drop-shadow(0 0 18px #2255ff88);">POLBENG</div>
+
+    <div class="divider"></div>
+
+    <!-- SKA FM badge as logo -->
+    <div class="ska-badge">
+      <span class="signal">📡</span>
+      <div>
+        <div class="freq">107,8</div>
+        <div class="name">SKA FM<br>POLBENG</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="hero-tag">UKM Radio SKA FM · Politeknik Negeri Bengkalis</p>
+  <h1 class="hero-title">SKA <span>COMPETITION</span><br>JILID 2</h1>
+  <p class="hero-sub">✨ NEW ERA ✨</p>
+  <p class="hero-tagline">
+    Ajang kompetisi penuh semangat, kreativitas, dan keberanian untuk tampil lebih percaya diri di hadapan para juri terbaik!
+  </p>
+  <div class="date-pill">
+    📅 <span>Sabtu,</span> 06 Juni 2026 &nbsp;·&nbsp; <span>Gedung Aula TI, Polbeng</span>
+  </div>
+
+  <div class="scroll-cue">
+    <span>SCROLL</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 5v14M5 12l7 7 7-7"/>
+    </svg>
+  </div>
+</header>
+
+<!-- PROFIL -->
+<section id="profil">
+  <div class="container">
+    <p class="hero-tag" style="text-align:center; margin-bottom:6px;">Tentang Kami</p>
+    <h2 class="section-title">PROFIL <span>SINGKAT</span></h2>
+    <p class="section-sub">SKA Competition Jilid 2 – Kenali lebih dalam kegiatan ini</p>
+
+    <div class="profil-card">
+      <p>
+        <strong>SKA Competition Jilid 2</strong> merupakan ajang kompetisi yang diselenggarakan oleh
+        <strong>UKM Radio SKA FM Politeknik Negeri Bengkalis</strong> sebagai wadah pengembangan bakat
+        dan kreativitas generasi muda se-Kepulauan Kabupaten Bengkalis.
+      </p>
+      <p>
+        Kegiatan ini menghadirkan dua cabang lomba dengan mengusung tema
+        <strong>"Stay Tuned, Stay Competitive."</strong> Melalui kegiatan ini, peserta diharapkan mampu
+        meningkatkan rasa percaya diri, kemampuan public speaking, serta kemampuan seni tarik suara
+        dalam suasana kompetitif yang positif dan kreatif.
+      </p>
+      <p>
+        Terbuka untuk <strong>Mahasiswa/i dan Siswa/i SMA/SMK sederajat</strong>
+        se-Kepulauan Kabupaten Bengkalis. Ini saatnya tampil, bersinar, dan tunjukkan bakat terbaikmu! 🌟
+      </p>
+
+      <div class="cabang-row">
+        <div class="cabang-chip">
+          <span class="icon">🎙️</span>
+          <div>
+            <div style="font-size:.7rem;letter-spacing:2px;color:var(--yellow);text-transform:uppercase;">Cabang Lomba 1</div>
+            <div>Motivation Speech</div>
+          </div>
+        </div>
+        <div class="cabang-chip">
+          <span class="icon">🎵</span>
+          <div>
+            <div style="font-size:.7rem;letter-spacing:2px;color:var(--yellow);text-transform:uppercase;">Cabang Lomba 2</div>
+            <div>Solo Song</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUIDEBOOK -->
+<section id="guidebook">
+  <div class="container">
+    <h2 class="section-title">📖 <span>GUIDEBOOK</span></h2>
+    <p class="section-sub">Unduh panduan lengkap lomba sebelum mendaftar</p>
+
+    <div class="guide-card" style="max-width:520px;margin:0 auto;">
+      <div class="guide-icon">📚</div>
+      <h3>PANDUAN RESMI<br>SKA COMPETITION JILID 2</h3>
+      <p>
+        Baca guidebook resmi kami untuk mengetahui syarat & ketentuan, teknis lomba,
+        kriteria penilaian, dan informasi lengkap lainnya sebelum mendaftar.
+      </p>
+      <a class="btn btn-yellow" href="https://bit.ly/4fcHcuA" target="_blank" rel="noopener">
+        📥 &nbsp; Buka Guidebook
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PENDAFTARAN -->
+<section id="pendaftaran">
+  <div class="container">
+    <h2 class="section-title">📋 <span>PENDAFTARAN</span></h2>
+    <p class="section-sub">Pilih cabang lomba dan gelombang pendaftaranmu</p>
+
+    <!-- SOLO SONG -->
+    <div class="lomba-block">
+      <div class="lomba-header">
+        <span class="emoji">🎵</span>
+        <h3>SOLO SONG</h3>
+        <div class="lomba-divider"></div>
+      </div>
+      <div class="gelombang-grid">
+        <!-- G1 -->
+        <div class="gelombang-card">
+          <span class="badge-wave badge-early">HEMAT</span>
+          <div class="wave-label">Gelombang 1</div>
+          <h4>Pendaftaran Awal</h4>
+          <div class="period">📅 15 – 25 Mei 2026</div>
+          <div class="price">Rp10.000 <small>/ peserta</small></div>
+          <a class="btn btn-yellow" href="https://bit.ly/4dAkQSA" target="_blank" rel="noopener" style="width:100%;justify-content:center;">
+            Daftar Gelombang 1 →
+          </a>
+        </div>
+        <!-- G2 -->
+        <div class="gelombang-card">
+          <span class="badge-wave badge-late">LAST CALL</span>
+          <div class="wave-label">Gelombang 2</div>
+          <h4>Pendaftaran Akhir</h4>
+          <div class="period">📅 26 Mei – 1 Juni 2026</div>
+          <div class="price">Rp15.000 <small>/ peserta</small></div>
+          <a class="btn btn-outline" href="https://bit.ly/3PsREnn" target="_blank" rel="noopener" style="width:100%;justify-content:center;">
+            Daftar Gelombang 2 →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOTIVATION SPEECH -->
+    <div class="lomba-block">
+      <div class="lomba-header">
+        <span class="emoji">🎙️</span>
+        <h3>MOTIVATION SPEECH</h3>
+        <div class="lomba-divider"></div>
+      </div>
+      <div class="gelombang-grid">
+        <!-- G1 -->
+        <div class="gelombang-card">
+          <span class="badge-wave badge-early">HEMAT</span>
+          <div class="wave-label">Gelombang 1</div>
+          <h4>Pendaftaran Awal</h4>
+          <div class="period">📅 15 – 25 Mei 2026</div>
+          <div class="price">Rp10.000 <small>/ peserta</small></div>
+          <a class="btn btn-yellow" href="https://bit.ly/4uDSdtm" target="_blank" rel="noopener" style="width:100%;justify-content:center;">
+            Daftar Gelombang 1 →
+          </a>
+        </div>
+        <!-- G2 -->
+        <div class="gelombang-card">
+          <span class="badge-wave badge-late">LAST CALL</span>
+          <div class="wave-label">Gelombang 2</div>
+          <h4>Pendaftaran Akhir</h4>
+          <div class="period">📅 26 Mei – 1 Juni 2026</div>
+          <div class="price">Rp15.000 <small>/ peserta</small></div>
+          <a class="btn btn-outline" href="https://bit.ly/4ddWAnV" target="_blank" rel="noopener" style="width:100%;justify-content:center;">
+            Daftar Gelombang 2 →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO & BENEFIT -->
+<section id="info">
+  <div class="container">
+    <h2 class="section-title">ℹ️ <span>INFO KEGIATAN</span></h2>
+    <p class="section-sub">Detail pelaksanaan SKA Competition Jilid 2</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic">📅</div>
+        <h4>Tanggal</h4>
+        <p>Sabtu<br>06 Juni 2026</p>
+      </div>
+      <div class="info-card">
+        <div class="ic">📍</div>
+        <h4>Lokasi</h4>
+        <p>Gedung Aula TI<br>Politeknik Negeri Bengkalis</p>
+      </div>
+      <div class="info-card">
+        <div class="ic">👥</div>
+        <h4>Peserta</h4>
+        <p>Mahasiswa/i & Siswa/i SMA/SMK se-Kab. Bengkalis</p>
+      </div>
+      <div class="info-card">
+        <div class="ic">🎭</div>
+        <h4>Cabang Lomba</h4>
+        <p>Motivation Speech<br>& Solo Song</p>
+      </div>
+    </div>
+
+    <div class="benefit-row">
+      <div class="benefit-chip">🏆 Uang Pembinaan Juara</div>
+      <div class="benefit-chip">📄 E-Sertifikat Peserta</div>
+      <div class="benefit-chip">🤝 Menambah Pengalaman & Relasi</div>
+      <div class="benefit-chip">🎤 Wadah Mengembangkan Potensi Diri</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT & PAYMENT -->
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">📞 <span>KONTAK & PEMBAYARAN</span></h2>
+    <p class="section-sub">Hubungi kami atau transfer biaya pendaftaran</p>
+
+    <div class="contact-row">
+      <div class="contact-card">
+        <div class="name">Contact Person</div>
+        <div class="number">0822-4921-9360</div>
+        <div class="role">Nisya</div>
+      </div>
+      <div class="contact-card">
+        <div class="name">Contact Person</div>
+        <div class="number">0823-1026-5880</div>
+        <div class="role">Khoirul</div>
+      </div>
+    </div>
+
+    <h3 style="text-align:center;font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px;margin-bottom:20px;color:var(--yellow);">💳 REKENING PEMBAYARAN</h3>
+
+    <div class="payment-row">
+      <div class="payment-card">
+        <div class="bank">BRI</div>
+        <div class="acc">1649 0102 8591 539</div>
+        <div class="holder">a.n Anggun Maryyamah</div>
+      </div>
+      <div class="payment-card">
+        <div class="bank">DANA</div>
+        <div class="acc">082391558901</div>
+        <div class="holder">a.n Annisa Nur Rohmadhani</div>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:40px;">
+      <a class="btn btn-outline" href="https://www.instagram.com/skapolbeng" target="_blank" rel="noopener">📸 @skapolbeng</a>
+      <a class="btn btn-outline" href="mailto:skafm@polbeng.ac.id">📧 skafm@polbeng.ac.id</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <strong style="color:var(--yellow)">UKM Radio SKA FM</strong> · Politeknik Negeri Bengkalis</p>
+  <p style="margin-top:8px;">"Bijakkan Diri, Anak Negeri!" &nbsp;·&nbsp; <a href="https://bit.ly/4fcHcuA" target="_blank">Guidebook</a></p>
+</footer>
+
+<script>
+  // Smooth scroll for nav
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Intersection observer for fade-in cards
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        en.target.style.opacity = '1';
+        en.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.gelombang-card, .info-card, .guide-card, .payment-card, .contact-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity .6s ease, transform .6s ease';
+    obs.observe(el);
+  });
+</script>
+</body>
+</html>
